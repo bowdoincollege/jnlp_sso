@@ -1,10 +1,34 @@
+<%@ page language="java"  %>
+
 <%response.setHeader("Pragma", "no-cache");
 response.setHeader("Expires", "0");
 response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
 response.setContentType("application/x-java-jnlp-file");
 
-    String codebase =   "https://" + request.getServerName() +  "/forms/java/";%>
+    String jnlpurl =   "https://" + request.getServerName() +  request.getContextPath();
+    String codebase =   "https://" + request.getServerName() +  "/forms/java/";
 
+    if ( request.getQueryString() != null && request.getQueryString().contains("formsjar"))
+    {%>
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="<%=codebase%>" href="">
+    <information>
+        <title>Oracle Forms</title>
+        <vendor>Oracle</vendor>
+    </information>
+    <security>
+        <all-permissions />
+    </security>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="frmall.jar"  main="true" />
+    </resources>
+    <component-desc/>
+</jnlp>
+<%
+    } else {
+%>
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp spec="1.0+" codebase="<%=codebase%>" href="">
     <information>
@@ -21,7 +45,7 @@ response.setContentType("application/x-java-jnlp-file");
         <jar href="sbannerui.jar" />
         <jar href="sbanspecial.jar" />
         <jar href="sbanorep_10_1_2_3.jar" />
-        <extension href="examplefrmall.jnlp"/>
+        <extension href="<%= jnlpurl %>/inb.jsp?formsjar=yes"/>
     </resources>
     <applet-desc
             name="Forms"
@@ -40,3 +64,4 @@ response.setContentType("application/x-java-jnlp-file");
         <param name="logo" value="false"/>
     </applet-desc>
 </jnlp>
+<%}%>

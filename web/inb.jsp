@@ -1,22 +1,22 @@
-<%@ page language="java" import="java.sql.*" %>
+<%@ page language="java"  %>
 <%--
   Created by IntelliJ IDEA.
   User: mullian
   Date: 11/21/2016
   Time: 3:19 PM
-  To change this template use File | Settings | File Templates.
 --%>
 <%response.setHeader("Pragma", "no-cache");
 response.setHeader("Expires", "0");
 response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
 response.setContentType("application/x-java-jnlp-file");
+
+    String codebase =   "https://" + request.getServerName() +  "/forms/java/";
 %>
 
 <% if (request.getQueryString().contains("iamticket"))
 {
     String iamticket = request.getQueryString().substring(request.getQueryString().length()- 32, request.getQueryString().length());
     String jnlpurl =   "https://" + request.getServerName() +  request.getContextPath();
-    String codebase =   "https://" + request.getServerName() +  "/forms/java/";
 %>
         <?xml version="1.0" encoding="UTF-8"?>
         <jnlp spec="1.0+" codebase="<%= codebase %>" href="">
@@ -59,7 +59,7 @@ response.setContentType("application/x-java-jnlp-file");
     {
 %>
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://dev-inb-vip.bowdoin.edu/forms/java/" href="">
+<jnlp spec="1.0+" codebase="<%= codebase %>" href="">
 <information>
     <title>Oracle Forms</title>
     <vendor>Oracle</vendor>
