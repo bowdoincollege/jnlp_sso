@@ -1,10 +1,12 @@
 <%response.setHeader("Pragma", "no-cache");
 response.setHeader("Expires", "0");
 response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
-response.setContentType("application/x-java-jnlp-file");%>
+response.setContentType("application/x-java-jnlp-file");
+
+    String codebase =   "https://" + request.getServerName() +  "/forms/java/";%>
 
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://dev-inb-vip.bowdoin.edu/forms/java/" href="">
+<jnlp spec="1.0+" codebase="<%=codebase%>" href="">
     <information>
         <title>Banner Launcher</title>
         <vendor>Ellucian</vendor>

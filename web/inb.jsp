@@ -16,9 +16,10 @@ response.setContentType("application/x-java-jnlp-file");
 {
     String iamticket = request.getQueryString().substring(request.getQueryString().length()- 32, request.getQueryString().length());
     String jnlpurl =   "https://" + request.getServerName() +  request.getContextPath();
+    String codebase =   "https://" + request.getServerName() +  "/forms/java/";
 %>
         <?xml version="1.0" encoding="UTF-8"?>
-        <jnlp spec="1.0+" codebase="https://dev-inb-vip.bowdoin.edu/forms/java/" href="">
+        <jnlp spec="1.0+" codebase="<%= codebase %>" href="">
             <information>
                 <title>Banner Launcher</title>
                 <vendor>Ellucian</vendor>
