@@ -11,12 +11,12 @@
     response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
 
-    String codebase = "https://" + request.getServerName() + "/forms/java/";
+    String codebase = "http://" + request.getServerName() + "/forms/java/";
 %>
 
 <% if (request.getQueryString().contains("iamticket")) {
     String iamticket = request.getQueryString().substring(request.getQueryString().length() - 32, request.getQueryString().length());
-    String jnlpurl = "https://" + request.getServerName() + request.getContextPath();
+    String jnlpurl = "http://" + request.getServerName() + request.getContextPath();
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp spec="1.0+" codebase="<%= codebase %>" href="">

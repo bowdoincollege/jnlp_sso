@@ -5,8 +5,8 @@
     response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
 
-    String jnlpurl = "https://" + request.getServerName() + request.getContextPath();
-    String codebase = "https://" + request.getServerName() + "/forms/java/";
+    String jnlpurl = "http://" + request.getServerName() + request.getContextPath();
+    String codebase = "http://" + request.getServerName() + "/forms/java/";
 
     if (request.getQueryString() != null && request.getQueryString().contains("formsjar")) {
 %>
