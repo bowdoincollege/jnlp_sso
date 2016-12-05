@@ -1,6 +1,5 @@
 <%@ page language="java" %>
 <%--
-  Created by IntelliJ IDEA.
   User: mullian
   Date: 11/21/2016
   Time: 3:19 PM
@@ -15,6 +14,7 @@
 %>
 
 <% if (request.getQueryString().contains("iamticket")) {
+
     String iamticket = request.getQueryString().substring(request.getQueryString().length() - 32, request.getQueryString().length());
     String jnlpurl = "http://" + request.getServerName() + request.getContextPath();
 %>

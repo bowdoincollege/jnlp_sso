@@ -5,7 +5,10 @@
     response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
 
+    //Point back to this file
     String jnlpurl = "http://" + request.getServerName() + request.getContextPath();
+
+    //Point to location of the forms jars
     String codebase = "http://" + request.getServerName() + "/forms/java/";
 
     if (request.getQueryString() != null && request.getQueryString().contains("formsjar")) {
