@@ -1,22 +1,13 @@
 <%@ page language="java" %>
-<%--
-  User: mullian
-  Date: 11/21/2016
-  Time: 3:19 PM
---%>
 <%
     response.setHeader("Pragma", "no-cache");
     response.setHeader("Expires", "0");
-    response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
+    response.setHeader("Content-Disposition", "filename=\"s-bb-sso.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
-
-    String codebase = "http://" + request.getServerName() + "/forms/java/";
-%>
-
-<% if (request.getQueryString().contains("iamticket")) {
-
+    String codebase = "https://stage-inb-vip.bowdoin.edu/forms/java/";
+ if (request.getQueryString().contains("iamticket")) {
     String iamticket = request.getQueryString().substring(request.getQueryString().length() - 32, request.getQueryString().length());
-    String jnlpurl = "http://" + request.getServerName() + request.getContextPath();
+    String jnlpurl = request.getScheme()+"://" +request.getServerName()+":"+ request.getServerPort()+"/"+ request.getRequestURI();
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp spec="1.0+" codebase="<%= codebase %>" href="">
@@ -35,7 +26,7 @@
         <jar href="sbannerui.jar"/>
         <jar href="sbanspecial.jar"/>
         <jar href="sbanorep_10_1_2_3.jar"/>
-        <extension href="<%= jnlpurl %>/inb.jsp?formsjar=yes"/>
+        <extension href="<%= jnlpurl %>?formsjar=yes"/>
     </resources>
     <applet-desc
             name="Forms"
@@ -56,7 +47,6 @@
         <param name="serverApp" value="default"/>
     </applet-desc>
 </jnlp>
-
 <% } else {
 %>
 <?xml version="1.0" encoding="UTF-8"?>

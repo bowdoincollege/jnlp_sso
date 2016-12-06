@@ -2,15 +2,12 @@
 <%
     response.setHeader("Pragma", "no-cache");
     response.setHeader("Expires", "0");
-    response.setHeader("Content-Disposition", "filename=\"bb.jnlp\";");
+    response.setHeader("Content-Disposition", "filename=\"p-bb.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
-
     //Point back to this file
-    String jnlpurl = "http://" + request.getServerName() + request.getContextPath();
-
+    String jnlpurl = request.getScheme()+"://" +request.getServerName()+":"+ request.getServerPort()+"/"+ request.getRequestURI();
     //Point to location of the forms jars
-    String codebase = "http://" + request.getServerName() + "/forms/java/";
-
+    String codebase = "https://prod-inb-vip.bowdoin.edu/forms/java/";
     if (request.getQueryString() != null && request.getQueryString().contains("formsjar")) {
 %>
 <?xml version="1.0" encoding="UTF-8"?>
@@ -48,7 +45,7 @@
         <jar href="sbannerui.jar"/>
         <jar href="sbanspecial.jar"/>
         <jar href="sbanorep_10_1_2_3.jar"/>
-        <extension href="<%= jnlpurl %>/inb.jsp?formsjar=yes"/>
+        <extension href="<%= jnlpurl %>?formsjar=yes"/>
     </resources>
     <applet-desc
             name="Forms"
@@ -57,7 +54,7 @@
             height="738">
         <param name="code" value="oracle.forms.engine.Main"/>
         <param name="serverURL"
-               value="/forms/lservlet?ifcfs=/forms/frmservlet?config=test&#38;ifsessid=WLS_FORMS.formsapp.1625&#38;acceptLanguage=en-US,en;q=0.8,en-CA;q=0.6"/>
+               value="/forms/lservlet?ifcfs=/forms/frmservlet?config=prod&#38;ifsessid=WLS_FORMS.formsapp.1625&#38;acceptLanguage=en-US,en;q=0.8,en-CA;q=0.6"/>
         <param name="serverArgs"
                value="escapeParams=true module=guainit.fmx userid=  debug=no host= port= obr=no record= tracegroup= log= term= ssoProxyConnect=no"/>
         <param name="separateFrame" value="true"/>
@@ -69,4 +66,6 @@
         <param name="logo" value="false"/>
     </applet-desc>
 </jnlp>
-<%}%>
+<%
+    }
+%>
