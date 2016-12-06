@@ -4,10 +4,12 @@
     response.setHeader("Expires", "0");
     response.setHeader("Content-Disposition", "filename=\"p-bb.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
-    //Point back to this file
-    String jnlpurl = request.getScheme()+"://" +request.getServerName()+":"+ request.getServerPort()+"/"+ request.getRequestURI();
-    //Point to location of the forms jars
     String codebase = "https://prod-inb-vip.bowdoin.edu/forms/java/";
+    //leave out port for jnlp if this is coming through the f5
+    String jnlpurl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/" + request.getRequestURI();
+    if (request.getServerName().contains("vip")) {
+        jnlpurl = "https://" + request.getServerName() +  request.getRequestURI();
+    }
     if (request.getQueryString() != null && request.getQueryString().contains("formsjar")) {
 %>
 <?xml version="1.0" encoding="UTF-8"?>

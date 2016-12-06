@@ -5,9 +5,13 @@
     response.setHeader("Content-Disposition", "filename=\"s-bb-sso.jnlp\";");
     response.setContentType("application/x-java-jnlp-file");
     String codebase = "https://stage-inb-vip.bowdoin.edu/forms/java/";
- if (request.getQueryString().contains("iamticket")) {
-    String iamticket = request.getQueryString().substring(request.getQueryString().length() - 32, request.getQueryString().length());
-    String jnlpurl = request.getScheme()+"://" +request.getServerName()+":"+ request.getServerPort()+"/"+ request.getRequestURI();
+    //leave out port for jnlp if this is coming through the f5
+    String jnlpurl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/" + request.getRequestURI();
+    if (request.getServerName().contains("vip")) {
+        jnlpurl = "https://" + request.getServerName() +  request.getRequestURI();
+    }
+    if (request.getQueryString().contains("iamticket")) {
+        String iamticket = request.getQueryString().substring(request.getQueryString().length() - 32, request.getQueryString().length());
 %>
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp spec="1.0+" codebase="<%= codebase %>" href="">
